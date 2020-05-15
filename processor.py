@@ -65,10 +65,38 @@ def print_matrix(matrix):
     print()
 
 
+def menu_transpose():
+
+    print("1. Main diagonal \n2. Side diagonal \n"
+          "3. Vertical line \n4. Horizontal line")
+    choice_t = int(input("Your choice:"))
+
+    if choice_t == 1:
+        MatrixA = get_matrix(0)
+        matrix_main_d = [[MatrixA[r][c] for r in range(len(MatrixA))] for c in range(len(MatrixA[0]))]
+        return matrix_main_d
+
+    elif choice_t == 2:
+        MatrixA = get_matrix(0)
+        matrix_side_d = [[MatrixA[r][c] for r in reversed(range(len(MatrixA)))] for c in reversed(range(len(MatrixA[0])))]
+        return matrix_side_d
+
+    elif choice_t == 3:
+        MatrixA = get_matrix(0)
+        matrix_vertical_l = [[MatrixA[c][r] for r in reversed(range(len(MatrixA)))] for c in range(len(MatrixA[0]))]
+        return matrix_vertical_l
+
+    elif choice_t == 4:
+        MatrixA = get_matrix(0)
+        matrix_vertical_l = [[MatrixA[c][r] for r in range(len(MatrixA))] for c in reversed(range(len(MatrixA[0])))]
+        return matrix_vertical_l
+
+
 if __name__ == "__main__":
     choice = 1
     while choice != 0:
-        print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit")
+        print("1. Add matrices \n2. Multiply matrix by a constant \n"
+              "3. Multiply matrices \n4. Transpose matrix \n0. Exit")
         choice = int(input("Your choice:"))
 
         if choice == 1:
@@ -86,6 +114,9 @@ if __name__ == "__main__":
             matrixA = get_matrix(1)
             matrixB = get_matrix(2)
             matrixRes = multiply_matrices(matrixA, matrixB)
+            print_matrix(matrixRes)
+        elif choice == 4:
+            matrixRes = menu_transpose()
             print_matrix(matrixRes)
 
 
